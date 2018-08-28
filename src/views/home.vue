@@ -3,11 +3,6 @@
     <v-header></v-header>
     <el-row>
       <el-col class="leftmenu" :span="3">
-        <!--<el-menu class="mar-l el-menu-vertical-demo el-col el-col-3" light router>-->
-        <!--<template>-->
-        <!--<el-menu-item></el-menu-item>-->
-        <!--</template>-->
-        <!--</el-menu>-->
         <el-menu :default-active="$route.path" light router>
           <template v-for="(item,index) in menuitem">
             <el-menu-item :index="item.path" @click="dolist(item.path)"  v-if="!item.hidden">

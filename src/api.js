@@ -1,6 +1,12 @@
-const baseUrl='http://www.rainrain.xin:12345/studentdb'
+const baseUrl='http://www.rainrain.xin:12345/studentdb';
+// 登录地址
 var getUserLogin = function (id,passwd,role) {
   const url = `${baseUrl}/user/login/${id}/${passwd}/${role}`;
+  return url;
+};
+// 获取个人信息
+var getPersonmsg = function (id,role){
+  const url = `${baseUrl}/userInfo/${id}/${role}`;
   return url;
 };
 // 查询所有课程信息
@@ -81,6 +87,7 @@ var changeStudenet = function(){
 export default {
   baseUrl
   ,getUserLogin
+  ,getPersonmsg
   ,getCourse
   ,deleteCourse
   ,addCourse

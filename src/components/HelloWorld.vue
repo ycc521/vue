@@ -39,21 +39,30 @@ export default {
   },
   methods: {
     dologin() {
-      console.log(Main.baseUrl)
       let {username,password,radio} = this;
       if(username==""||password==""){
         alert("用户名或密码为空");
       }else{
         this.$http.get(Main.getUserLogin(username,password,radio)).then(res => {
           console.log(res);
-          const code=res.data.errCode;
-          if(code==0){
+          let{errCode,errMsg,dataList}= res.data;
+          if(errCode==0){
+            sessionStorage.setItem('userId', dataList[0].id);
+            var role=radio;
+            sessionStorage.setItem('userRole',role);
+           var userName=dataList[0].name || dataList[0].tname;
+            sessionStorage.setItem('userName', userName);
             this.$router.push({path: '/person-msg'})
+            this.$message({
+              message: '恭喜你'+userName+'! 成功登录学生成绩管理系统',
+              type: 'success'
+            });
           }else{
-            alert(res.data.errMsg)
+            this.$message.error(errMsg);
           }
         }, response => {
-          // error callback
+          this.$message.error('error submit!!');
+          return false;
         });
       }
     }

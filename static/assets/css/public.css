@@ -12,6 +12,9 @@ li{
 .text-right{
   text-align: right;
 }
+.text-center{
+  text-align:center;
+}
 .m-b-xs{
   margin-bottom:10px !important;
 }
