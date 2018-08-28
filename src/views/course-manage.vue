@@ -12,7 +12,7 @@
         <el-table-column prop="type" label="类型"></el-table-column>
         <el-table-column prop="teacher_id" label="教师编号"></el-table-column>
         <el-table-column label="操作">
-          <template scope="scope">
+          <template slot-scope="scope">
             <el-button type="primary" size="small" @click="courseEdit(scope.$index, scope.row)">编辑</el-button>
             <el-button type="danger" size="small" @click="courseDelete(scope.row)">删除</el-button>
           </template>
@@ -149,7 +149,6 @@
           this.addCourseform = true;
           this.$http.get(Main.gettMsg()).then(res => {
             let {errCode,dataList,errMsg}=res.data;
-            console.log(res.data);
             if(errCode==0){
               this.techerArry = dataList
             }else{

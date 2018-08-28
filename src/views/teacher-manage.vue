@@ -22,7 +22,6 @@
       <el-pagination
         @size-change="sizeChange"
         @current-change="currentChange"
-        :current-page="currentPage"
         :page-sizes="[10,20,30,40]"
         :page-size="page.pageSize"
         layout="total, sizes, prev, pager, next"
@@ -105,7 +104,7 @@
               pageSize: 10, //每页条数,  默认10条
               totalRecords: 0, //总条数
               totalPages: 0, //总页数
-              currentPage:1
+              pageNum:0
             },
             edittForm:{
               id: '',
@@ -152,14 +151,15 @@
           this.addTeacherform = false;
           this.changeTeacherform = false;
         },
-        //        翻页
+        //        每页显示多少条数据
         sizeChange(val) {
           this.page.pageSize = val;
           this.init();
-          console.log('翻页');
         },
+        //翻页
         currentChange(val) {
-          this.page.currentPage = val;
+          this.page.pageNum=val-1;
+          console.log(this.page.pageNum);
           this.init();
         },
         // 点击新增教师按钮
@@ -167,9 +167,9 @@
           this.addTeacherform = true;
           this.$http.get(Main.getallCourse()).then(res =>{
             let {errCode,dataList,errMsg}=res.data;
+            console.log(res.data);
            if(errCode==0){
              this.courseArry=dataList;
-
            }else{
              alert(errMsg);
            }
