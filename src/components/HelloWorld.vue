@@ -44,14 +44,30 @@ export default {
         alert("用户名或密码为空");
       }else{
         this.$http.get(Main.getUserLogin(username,password,radio)).then(res => {
-          console.log(res);
           let{errCode,errMsg,dataList}= res.data;
+          console.log(res.data);
           if(errCode==0){
             sessionStorage.setItem('userId', dataList[0].id);
-            var role=radio;
-            sessionStorage.setItem('userRole',role);
-           var userName=dataList[0].name || dataList[0].tname;
-            sessionStorage.setItem('userName', userName);
+            let role=radio;
+            sessionStorage.setItem('userRole',role);             //存储角色（学生和教师）
+           let userName=dataList[0].name || dataList[0].tname;
+            sessionStorage.setItem('userName', userName);       //存储用户名（学生和教师）
+            let userPsd=dataList[0].passwd;
+            sessionStorage.setItem('userPassword', userPsd);   //存储密码（学生和教师）
+            let userSex=dataList[0].sex || dataList[0].tsex;
+            sessionStorage.setItem('userSex', userSex);         //存储性别（学生和教师）
+            let userDepart=dataList[0].depart || dataList[0].tdepart;
+            sessionStorage.setItem('userDepart', userDepart);   //存储部门院系（教师和学生）
+            let cno =dataList[0].class_cno;
+            sessionStorage.setItem('userCno',cno);              //存储课程id（教师）
+            let age =dataList[0].age;
+            sessionStorage.setItem('studentAge',age);           //存储年龄（学生）
+            let major =dataList[0].major;
+            sessionStorage.setItem('studentMajor',major);      //存储专业（学生）
+            let term =dataList[0].term;
+            sessionStorage.setItem('studentTerm',term);        //存储学期（学生）
+            let year =dataList[0].year;
+            sessionStorage.setItem('studentYear',year);        //存储所在年级（学生）
             this.$router.push({path: '/person-msg'})
             this.$message({
               message: '恭喜你'+userName+'! 成功登录学生成绩管理系统',
@@ -76,6 +92,7 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+
 .login-bg {
   height: 100%;
   background: url(../../static/assets/img/bglogin.jpg) no-repeat center;

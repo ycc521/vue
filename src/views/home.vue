@@ -31,6 +31,9 @@
           {path:'/teacher-manage',name:'教师管理',class: 'fa-newspaper-o'},
           {path:'/course-manage',name:'课程管理', class: 'fa-plug'},
           {path:'/grade-manage',name:'成绩管理', class: 'fa-newspaper-o'},
+          {path:'/grade-query',name:'成绩查询', class: 'fa-line-chart'},
+          {path:'/grade-write',name:'成绩录入', class: 'fa-newspaper-o'},
+          {path:'/system-settings',name:'系统设置', class: 'fa-line-chart'},
         ]
       }
     },
@@ -55,6 +58,9 @@
   .el-menu-item{
     background: #eee;
     border-bottom:1px solid #fff;
+  }
+  .el-menu-item:nth-child(5){
+    border-right:3px solid rgb(32, 160, 255);
   }
   .leftmenu{
     height:100%;

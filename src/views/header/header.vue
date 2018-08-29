@@ -28,7 +28,7 @@
     padding:0 15px;
     height:50px;
     line-height:50px;
-    background: #0a7dc2;
+    background-color: rgb(32, 160, 255);
     color:#fff;
     font-weight: 700;
     font-size:18px;
