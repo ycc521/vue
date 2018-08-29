@@ -18,7 +18,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="block">
+    <div class="block" style="height:70px;">
       <el-pagination
         @size-change="sizeChange"
         @current-change="currentChange"

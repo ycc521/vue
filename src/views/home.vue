@@ -3,8 +3,16 @@
     <v-header></v-header>
     <el-row>
       <el-col class="leftmenu" :span="3">
-        <el-menu :default-active="$route.path" light router>
+        <el-menu :default-active="$route.path" light router v-if="showTeacher">
           <template v-for="(item,index) in menuitem">
+            <el-menu-item :index="item.path" @click="dolist(item.path)"  v-if="!item.hidden">
+              <i class="fa" :class="item.class"></i>
+              {{item.name}}
+            </el-menu-item>
+          </template>
+        </el-menu>
+        <el-menu :default-active="$route.path" light router v-if="showStudent">
+          <template v-for="(item,index) in menuitems">
             <el-menu-item :index="item.path" @click="dolist(item.path)"  v-if="!item.hidden">
               <i class="fa" :class="item.class"></i>
               {{item.name}}
@@ -25,6 +33,8 @@
     name: "home",
     data(){
       return{
+        showTeacher:false,
+        showStudent:false,
         menuitem:[
           {path:'/person-msg',name:'个人信息',class: 'fa-line-chart'},
           {path:'/student-manage',name:'学生管理',class: 'fa-table'},
@@ -33,14 +43,25 @@
           {path:'/grade-manage',name:'成绩管理', class: 'fa-newspaper-o'},
           {path:'/grade-query',name:'成绩查询', class: 'fa-line-chart'},
           {path:'/grade-write',name:'成绩录入', class: 'fa-newspaper-o'},
-          {path:'/system-settings',name:'系统设置', class: 'fa-line-chart'},
-        ]
+          {path:'/system-settings',name:'修改密码', class: 'fa-line-chart'},
+        ],
+        menuitems:[
+          {path:'/person-msg',name:'个人信息',class: 'fa-line-chart'},
+          {path:'/grade-query',name:'成绩查询', class: 'fa-line-chart'},
+          {path:'/system-settings',name:'修改密码', class: 'fa-line-chart'},
+        ],
       }
     },
     components: {
       'v-header': Header
     },
     mounted(){
+      let role = sessionStorage.getItem('userRole');
+      if(role==1){
+        this.showTeacher = true;
+      }else{
+        this.showStudent = true;
+      }
       history.pushState(null, null, document.URL);
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL);

@@ -6,10 +6,10 @@
            <el-input type="password" v-model="ruleForm2.passwd" placeholder="请输入原始密码"></el-input>
           </el-form-item>
           <el-form-item label="新密码" prop="checkPass">
-          <el-input v-model="ruleForm2.checkPass" auto-complete="off" placeholder="必须为数字且为六个数"></el-input>
+          <el-input v-model="ruleForm2.checkPass" type="number" auto-complete="off" placeholder="必须为数字且为六个数"></el-input>
           </el-form-item>
           <el-form-item label="确认新密码" prop="confirmPass">
-          <el-input v-model="ruleForm2.confirmPass" auto-complete="off" placeholder="请确认新密码"></el-input>
+          <el-input v-model="ruleForm2.confirmPass" type="number" auto-complete="off" placeholder="请确认新密码"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
@@ -40,7 +40,7 @@
             callback(new Error('请输入新密码'));
           } else {
             if(value.length<6){
-
+              this.$message.error("新密码必须是六位数字");
             }else{
               if (this.ruleForm2.confirmPass !== '') {
                 this.$refs.ruleForm2.validateField('confirmPass');
