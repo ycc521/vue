@@ -104,6 +104,11 @@ var getScore = function(id){
   const url =`${baseUrl}/score/info/byStudent/${id}`;
   return url;
 };
+//新增成绩
+var addScore = function(){
+  const url =`${baseUrl}/score/insert`;
+  return url;
+};
 export default {
   baseUrl
   ,getUserLogin
@@ -126,4 +131,5 @@ export default {
   ,changeScore
   ,deleteScore
   ,getScore
+  ,addScore
 }

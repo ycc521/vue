@@ -10,7 +10,7 @@
         <el-table-column prop="name" label="姓名"></el-table-column>
         <el-table-column prop="className" label="课程名"></el-table-column>
         <el-table-column prop="grade" label="成绩"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" v-if="show">
           <template scope="scope">
             <el-button type="primary" size="small"  @click="scoreEdit(scope.$index, scope.row)">修改</el-button>
             <el-button type="danger" size="small" @click="scoreDelete(scope.row)">删除</el-button>
@@ -64,6 +64,7 @@
           scoreData:[],
           listArry:[], //所有课程数组
           changeScoreform:false,  //修改成绩信息莫模态框
+          show:false,            //判断是老师还是学生
           page: {
             pageSize: 10, //每页条数,  默认10条
             totalRecords: 0, //总条数
