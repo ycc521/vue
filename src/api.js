@@ -84,6 +84,26 @@ var changeStudenet = function(){
   const url = `${baseUrl}/user/edit`;
   return url;
 };
+// 获取所有课程成绩
+var getallCoursescore = function(page,size){
+  const url =`${baseUrl}/score/info/all/${page}/${size}`;
+  return url;
+};
+//修改成绩
+var changeScore = function(){
+  const url = `${baseUrl}/score/edit`;
+  return url;
+};
+// 根据id删除成绩
+var deleteScore = function(id){
+  const url =`${baseUrl}/score/delete/${id}`;
+  return url;
+};
+// 根据id获取成绩
+var getScore = function(id){
+  const url =`${baseUrl}/score/info/byStudent/${id}`;
+  return url;
+};
 export default {
   baseUrl
   ,getUserLogin
@@ -102,5 +122,8 @@ export default {
   ,addStudent
   ,deleteStudent
   ,changeStudenet
-
+  ,getallCoursescore
+  ,changeScore
+  ,deleteScore
+  ,getScore
 }

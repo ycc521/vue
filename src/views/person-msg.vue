@@ -77,6 +77,7 @@
 </script>
 
 <style scoped>
+  /*标题通用*/
   .title{
     height:40px;
     line-height:40px;
