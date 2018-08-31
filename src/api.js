@@ -109,6 +109,16 @@ var addScore = function(){
   const url =`${baseUrl}/score/insert`;
   return url;
 };
+//根据学号、课程id、是否及格、查学生成绩
+var inqueryScore = function(){
+  const url =`${baseUrl}/score/search`;
+  return url;
+};
+// 导出到excel
+var exportExcel = function(){
+  const url =`${baseUrl}/score/export/all`;
+  return url;
+}
 export default {
   baseUrl
   ,getUserLogin
@@ -132,4 +142,6 @@ export default {
   ,deleteScore
   ,getScore
   ,addScore
+  ,inqueryScore
+  ,exportExcel
 }

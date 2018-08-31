@@ -2,15 +2,18 @@
   <div>
     <el-row>
       <el-col :span="24">
-        <h4 class="title">所有课程成绩信息</h4>
+        <h4 class="title">所有课程成绩信息<el-button type="success" class="pull-right" @click="excel()">导出到EXCEL</el-button></h4>
+        <div style="clear: both"></div>
       </el-col>
-      <el-table :data="scoreData" border style="width: 100%">
+      <el-table
+        :data="scoreData"
+        border style="width: 100%">
         <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="student_id" label="学号"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
         <el-table-column prop="className" label="课程名"></el-table-column>
         <el-table-column prop="grade" label="成绩"></el-table-column>
-        <el-table-column label="操作" v-if="show">
+        <el-table-column label="操作">
           <template scope="scope">
             <el-button type="primary" size="small"  @click="scoreEdit(scope.$index, scope.row)">修改</el-button>
             <el-button type="danger" size="small" @click="scoreDelete(scope.row)">删除</el-button>
@@ -64,7 +67,6 @@
           scoreData:[],
           listArry:[], //所有课程数组
           changeScoreform:false,  //修改成绩信息莫模态框
-          show:false,            //判断是老师还是学生
           page: {
             pageSize: 10, //每页条数,  默认10条
             totalRecords: 0, //总条数
@@ -163,6 +165,13 @@
             }) .catch(() => {
             this.$message.info('已取消操作!');
           });
+        },
+        // 导出到excel
+        excel(){
+          this.$http.get(window.open(Main.exportExcel())).then(res =>{
+          }, response => {
+            // error callback
+          })
         }
       }
     }
@@ -177,7 +186,7 @@
     color:rgb(32, 160, 255);
     font-size:16px;
     font-family:"PingFang SC";
-    padding:0 15px;
+    padding:10px 15px;
     border-left:3px solid rgb(32, 160, 255);
   }
 </style>

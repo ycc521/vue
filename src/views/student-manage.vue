@@ -171,16 +171,6 @@
               if(errCode==0){
                 const studentArray=res.data.dataList;
                 this.studentData=studentArray;
-               // for(let i=0;i<=studentArray.length;i++){
-               //   for(let j=0;j<=this.termArry.length;j++){
-               //     console.log(this.termArry[j].id);
-               //     if(this.termArry[j].id='一'){
-               //       studentArray[i].term='第一学期';
-               //     }else if(this.termArry[j].id='二'){
-               //       studentArray[i].term='第二学期';
-               //     }
-               //   }
-               // }
               }else{
                   alert(errMsg);
               }
