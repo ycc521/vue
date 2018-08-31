@@ -2,7 +2,9 @@
   <div>
     <el-row>
       <el-col :span="24">
-        <h4 class="title">所有课程成绩信息<el-button type="success" class="pull-right" @click="excel()">导出到EXCEL</el-button></h4>
+        <h4 class="title">所有课程成绩信息
+          <a class="pull-right btns" href="http://www.rainrain.xin:12345/studentdb/score/export/all">导出到EXCEL</a>
+        </h4>
         <div style="clear: both"></div>
       </el-col>
       <el-table
@@ -167,12 +169,6 @@
           });
         },
         // 导出到excel
-        excel(){
-          this.$http.get(window.open(Main.exportExcel())).then(res =>{
-          }, response => {
-            // error callback
-          })
-        }
       }
     }
 </script>
@@ -188,5 +184,21 @@
     font-family:"PingFang SC";
     padding:10px 15px;
     border-left:3px solid rgb(32, 160, 255);
+  }
+  .btns{
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+    display:inline-block;
+    padding:0 20px;
+    border-radius: 4px;
+    font-weight:500;
+    text-decoration: none;
+    font-size:14px;
+  }
+  .btns:hover{
+    background: #85ce61;
+    border-color: #85ce61;
+    color: #fff;
   }
 </style>
