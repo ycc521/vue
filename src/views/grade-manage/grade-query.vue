@@ -20,12 +20,17 @@
             <el-button type="primary" @click="onInquerystudentID()">查询</el-button>
           </el-form-item>
         </el-form>
-        <el-table :data="scoreData" border style="width: 100%" v-if="studentId">
-          <el-table-column prop="id" label="学号"></el-table-column>
-          <el-table-column prop="name" label="姓名"></el-table-column>
-          <el-table-column prop="className" label="课程名"></el-table-column>
-          <el-table-column prop="grade" label="成绩"></el-table-column>
-        </el-table>
+        <div v-if="studentId">
+          <el-table :data="scoreData" border style="width: 100%" >
+            <el-table-column prop="id" label="学号"></el-table-column>
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="className" label="课程名"></el-table-column>
+            <el-table-column prop="grade" label="成绩"></el-table-column>
+          </el-table>
+          <h4 class="m-t-sm">
+            <a class="pull-right btns" href="javaScript:;">导出到EXCEL并发送指定邮箱</a>
+          </h4>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -110,5 +115,21 @@
     font-family:"PingFang SC";
     padding:10px 15px 10px 15px;
     border-left:3px solid rgb(32, 160, 255);
+  }
+  .btns{
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+    display:inline-block;
+    padding:15px 20px;
+    border-radius: 4px;
+    font-weight:500;
+    text-decoration: none;
+    font-size:14px;
+  }
+  .btns:hover{
+    background: #85ce61;
+    border-color: #85ce61;
+    color: #fff;
   }
 </style>

@@ -119,6 +119,13 @@ var exportExcel = function(){
   const url =`${baseUrl}/score/export/all`;
   return url;
 }
+
+//根据学号导出学生成绩发送到指定邮箱
+var exportstudent_idExcel = function(id,email){
+  const url =`${baseUrl}/score/export/one/${id}/${email}`;
+  return url;
+};
+
 export default {
   baseUrl
   ,getUserLogin
@@ -144,4 +151,5 @@ export default {
   ,addScore
   ,inqueryScore
   ,exportExcel
+  ,exportstudent_idExcel
 }
