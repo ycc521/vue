@@ -49,7 +49,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="edittForm.passwd"></el-input>
+          <el-input v-model="edittForm.passwd" disabled="disabled"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="teacherChange()">确定</el-button>
@@ -191,13 +191,10 @@
                 this.$set(this.addtForm,{});
                 this.init();
                 this.addTeacherform = false;
-//                this.$refs[formName].resetFields();
               }else{
                 this.$message.error(errMsg);
               }
-
             }, response => {
-              // error callback
             });
           }
 

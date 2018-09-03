@@ -175,7 +175,6 @@
                   alert(errMsg);
               }
             }, response => {
-              // error callback
             })
           },
         // 每页显示多少条数据
@@ -213,13 +212,11 @@
                   this.$set(this.addsForm,{});
                   this.init();
                   this.addstudentForm = false;
-//                this.$refs[formName].resetFields();
                 }else{
                   this.$message.error(errMsg);
                 }
 
               }, response => {
-                // error callback
               });
             }
         },
@@ -270,5 +267,8 @@
   .el-pagination{
     text-align:center;
     margin-top:20px;
+  }
+  .el-table .cell{
+    white-space:nowrap !important;
   }
 </style>

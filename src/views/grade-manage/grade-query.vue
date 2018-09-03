@@ -4,15 +4,17 @@
       <el-col :span="24">
         <el-form :inline="true" :model="formInline" class="demo-form-inline title">
           <el-form-item label="学号" style="margin-bottom:0;">
-            <el-input v-model="formInline.student_id" placeholder="输入学号查询"></el-input>
+            <el-input v-model="formInline.student_id"></el-input>
           </el-form-item>
           <el-form-item label="课程" style="margin-bottom:0;">
             <el-select v-model="formInline.class_id" value-key="id">
+              <el-option value="请选择"></el-option>
               <el-option v-for="item in listArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="是否及格" style="margin-bottom:0;">
             <el-select v-model="formInline.pass" value-key="id">
+              <el-option value="请选择"></el-option>
               <el-option v-for="item in blurArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
             </el-select>
           </el-form-item>
