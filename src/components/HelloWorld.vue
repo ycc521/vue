@@ -47,6 +47,8 @@ export default {
           let{errCode,errMsg,dataList}= res.data;
           console.log(res.data);
           if(errCode==0){
+            let rolename = dataList[0].role;
+            sessionStorage.setItem('userrole',rolename);
             sessionStorage.setItem('userId', dataList[0].id);
             let role=radio;
             sessionStorage.setItem('userRole',role);             //存储角色（学生和教师）
@@ -70,7 +72,7 @@ export default {
             sessionStorage.setItem('studentYear',year);        //存储所在年级（学生）
             this.$router.push({path: '/person-msg'})
             this.$message({
-              message: '恭喜你'+userName+'! 成功登录学生成绩管理系统',
+              message: '恭喜'+rolename+userName+'! 成功登录学生成绩管理系统',
               type: 'success'
             });
           }else{

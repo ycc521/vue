@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="header">
-      LOGO
+      学生成绩管理系统
       <div class="pull-right" style="cursor: pointer" @click="loginOut()">
         退 出
       </div>

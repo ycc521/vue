@@ -2,26 +2,50 @@
   <div>
     <el-row style="margin-bottom:20px;">
       <el-col :span="24">
-        <el-form :inline="true" :model="formInline" class="demo-form-inline title">
-          <el-form-item label="学号" style="margin-bottom:0;">
-            <el-input v-model="formInline.student_id"></el-input>
-          </el-form-item>
-          <el-form-item label="课程" style="margin-bottom:0;">
-            <el-select v-model="formInline.class_id" value-key="id">
-              <el-option value="请选择"></el-option>
-              <el-option v-for="item in listArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="是否及格" style="margin-bottom:0;">
-            <el-select v-model="formInline.pass" value-key="id">
-              <el-option value="请选择"></el-option>
-              <el-option v-for="item in blurArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item style="margin-bottom:0;">
-            <el-button type="primary" @click="onInquerystudentID()">查询</el-button>
-          </el-form-item>
-        </el-form>
+        <div v-if="showStudent">
+          <el-form :inline="true" :model="formInline" class="demo-form-inline title">
+            <el-form-item label="学号" style="margin-bottom:0;">
+              <el-input v-model="formInline.student_id" disabled="disabled"></el-input>
+            </el-form-item>
+            <el-form-item label="课程" style="margin-bottom:0;">
+              <el-select v-model="formInline.class_id" value-key="id">
+                <el-option value="请选择"></el-option>
+                <el-option v-for="item in listArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="是否及格" style="margin-bottom:0;">
+              <el-select v-model="formInline.pass" value-key="id">
+                <el-option value="请选择"></el-option>
+                <el-option v-for="item in blurArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item style="margin-bottom:0;">
+              <el-button type="primary" @click="onInquerystudentID()">查询</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div v-if="showTeacher">
+          <el-form :inline="true" :model="formInline" class="demo-form-inline title">
+            <el-form-item label="学号" style="margin-bottom:0;">
+              <el-input v-model="formInline.student_id"></el-input>
+            </el-form-item>
+            <el-form-item label="课程" style="margin-bottom:0;">
+              <el-select v-model="formInline.class_id" value-key="id">
+                <el-option value="请选择"></el-option>
+                <el-option v-for="item in listArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="是否及格" style="margin-bottom:0;">
+              <el-select v-model="formInline.pass" value-key="id">
+                <el-option value="请选择"></el-option>
+                <el-option v-for="item in blurArry"  :key="item.id" :label="item.name" :value="item.id"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item style="margin-bottom:0;">
+              <el-button type="primary" @click="onInquerystudentID()">查询</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
         <div v-if="studentId">
           <el-table :data="scoreData" border style="width: 100%" >
             <el-table-column prop="id" label="学号"></el-table-column>
@@ -29,9 +53,6 @@
             <el-table-column prop="className" label="课程名"></el-table-column>
             <el-table-column prop="grade" label="成绩"></el-table-column>
           </el-table>
-          <h4 class="m-t-sm">
-            <a class="pull-right btns" href="javaScript:;">导出到EXCEL并发送指定邮箱</a>
-          </h4>
         </div>
       </el-col>
     </el-row>
@@ -47,6 +68,8 @@
           listArry:[], //课程数组
           scoreData:[], //只查询学号
           studentId:false, //只查询学号列表展示
+          showStudent:false,
+          showTeacher:false,
           blurArry:[
             {id:'0',name:'不及格'},
             {id:'1',name:'及格'},
@@ -61,6 +84,14 @@
         }
       },
       mounted(){
+        let role = sessionStorage.getItem('userrole');
+        let id = sessionStorage.getItem('userId');
+        if(role=='学生'){
+          this.showStudent = true;
+          this.formInline.student_id=id;
+        }else{
+          this.showTeacher = true;
+        }
         this.init();
       },
       methods:{

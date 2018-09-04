@@ -19,6 +19,15 @@
             </el-menu-item>
           </template>
         </el-menu>
+
+        <el-menu :default-active="$route.path" light router v-if="showManager">
+          <template v-for="(item,index) in menuitemM">
+            <el-menu-item :index="item.path" @click="dolist(item.path)"  v-if="!item.hidden">
+              <i class="fa" :class="item.class"></i>
+              {{item.name}}
+            </el-menu-item>
+          </template>
+        </el-menu>
       </el-col>
       <el-col class="contentRight" :span="21" :offset="3">
         <router-view></router-view>
@@ -35,11 +44,9 @@
       return{
         showTeacher:false,
         showStudent:false,
+        showManager:false,
         menuitem:[
           {path:'/person-msg',name:'个人信息',class: 'fa-line-chart'},
-          {path:'/student-manage',name:'学生管理',class: 'fa-table'},
-          {path:'/teacher-manage',name:'教师管理',class: 'fa-newspaper-o'},
-          {path:'/course-manage',name:'课程管理', class: 'fa-plug'},
           {path:'/grade-manage',name:'成绩管理', class: 'fa-newspaper-o'},
           {path:'/grade-query',name:'成绩查询', class: 'fa-line-chart'},
           {path:'/grade-write',name:'成绩录入', class: 'fa-newspaper-o'},
@@ -50,15 +57,25 @@
           {path:'/grade-query',name:'成绩查询', class: 'fa-line-chart'},
           {path:'/system-settings',name:'修改密码', class: 'fa-line-chart'},
         ],
+        menuitemM:[
+          {path:'/person-msg',name:'个人信息',class: 'fa-line-chart'},
+          {path:'/student-manage',name:'学生管理',class: 'fa-table'},
+          {path:'/teacher-manage',name:'教师管理',class: 'fa-newspaper-o'},
+          {path:'/course-manage',name:'课程管理', class: 'fa-plug'},
+          {path:'/system-settings',name:'修改密码', class: 'fa-line-chart'},
+        ],
       }
     },
     components: {
       'v-header': Header
     },
     mounted(){
-      let role = sessionStorage.getItem('userRole');
-      if(role==1){
+      let role = sessionStorage.getItem('userrole');
+      console.log(role);
+      if(role=='教师'){
         this.showTeacher = true;
+      }else if(role=='管理员'){
+        this.showManager = true;
       }else{
         this.showStudent = true;
       }

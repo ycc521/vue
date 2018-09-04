@@ -38,7 +38,7 @@
           <el-input v-model="form.type"></el-input>
         </el-form-item>
         <el-form-item label="教师编号">
-          <el-input v-model="form.teacher_id"></el-input>
+          <el-input v-model="form.teacher_id" disabled="disabled"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="editChange()">修改</el-button>
