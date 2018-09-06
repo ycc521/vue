@@ -41,6 +41,7 @@
         data(){
           return{
             teacherData:[],
+            studentData:[],
             Teacherform:false,
             Studentform:false
           }

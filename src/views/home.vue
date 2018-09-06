@@ -86,7 +86,7 @@
     },
     methods:{
       dolist(e){
-        this.$router.push({path:e})
+        this.$router.push({path:e})   //点击菜单跳转到指定页面，浏览器地址栏对应指定路由
       }
     }
   }

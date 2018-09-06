@@ -157,10 +157,10 @@
         },
         // 根据用户id删除当前成绩
         scoreDelete(user){
-          this.$confirm('此操作将永久删除学号为 ' + user.student_id + ', 是否继续?', '提示', { type: 'warning' })
+          this.$confirm('此操作将永久删除姓名为 ' + user.name + '的成绩, 是否继续?', '提示', { type: 'warning' })
             .then(() => { // 向请求服务端删除
               this.$http.delete(Main.deleteScore(user.id)).then((response) => {
-                this.$message.success('成功删除了学号为' + user.student_id + '!');this.init()})
+                this.$message.success('成功删除了姓名为' + user.name + '的成绩!');this.init()})
                 .catch((response) => {
                   this.$message.error('删除失败!');
                 });

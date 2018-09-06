@@ -179,7 +179,6 @@
         },
 //        点击编辑的修改（修改课程信息）
         editChange(){
-
           let changelist=this.form;
           let {name,credit,ctime,type}=changelist;
           if(name==""||credit==""||ctime==""||type==""){
@@ -191,7 +190,6 @@
             }, response => {
             });
           }
-
         }
       },
     }

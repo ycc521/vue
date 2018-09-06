@@ -35,7 +35,7 @@ export default new Router({
         { path: '/grade-manage', component: GradeMessage, name: 'grade-manage' },          //成绩管理
         { path: '/grade-query', component: GradeQuery, name: 'grade-query' },              //成绩查询
         { path: '/grade-write', component: GradeWrite, name: 'grade-write' },              //成绩录入
-        { path:'/system-settings',component: SystemSettings, name:'system-settings'}      //系统设置
+        { path:'/system-settings',component: SystemSettings, name:'system-settings'}      //修改密码
       ]
     }
   ]

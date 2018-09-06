@@ -41,7 +41,7 @@ export default {
     dologin() {
       let {username,password,radio} = this;
       if(username==""||password==""){
-        alert("用户名或密码为空");
+        this.$message.error("账号和密码不能为空");
       }else{
         this.$http.get(Main.getUserLogin(username,password,radio)).then(res => {
           let{errCode,errMsg,dataList}= res.data;
